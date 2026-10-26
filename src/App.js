@@ -540,6 +540,11 @@ function KnowledgeVaultInner() {
   const [themeMode, setThemeMode] = useState('light');
   const isDark = useMemo(() => { if (themeMode === 'dark') return true; if (themeMode === 'light') return false; if (typeof window !== 'undefined') return window.matchMedia('(prefers-color-scheme: dark)').matches; return false; }, [themeMode]);
   
+  useEffect(() => {
+    if (isDark) document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  }, [isDark]);
+  
   const [folders, setFolders] = useState([]);
   const [items, setItems] = useState([]);
   const [sharedPublicItems, setSharedPublicItems] = useState([]);
